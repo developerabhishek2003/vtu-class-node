@@ -11,23 +11,15 @@ const cors = require('cors');
 
 const app = express();
 
-// ✅ ADD THIS HERE
 const allowedOrigins = [
-  "https://skills.vtudeveloper.in",
-  "http://localhost:3000"
+  "https://skills.vtudeveloper.in"
 ];
 
-// ✅ FIXED CORS
 app.use(cors({
   origin: allowedOrigins,
   credentials: true
 }));
 
-app.use(express.json());
-
-const server = http.createServer(app);
-
-// ✅ FIXED SOCKET.IO CORS
 const io = new Server(server, {
   cors: {
     origin: allowedOrigins,
