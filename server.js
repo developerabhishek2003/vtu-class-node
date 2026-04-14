@@ -7,13 +7,22 @@ const http = require('http');
 const { Server } = require('socket.io');
 const cors = require('cors');
  
-const app = express();
-app.use(cors({ origin: '*' }));
-app.use(express.json());
- 
-const server = http.createServer(app);
+const allowedOrigins = [
+  "https://skills.vtudeveloper.in",
+  "http://localhost:3000"
+];
+
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true
+}));
+
 const io = new Server(server, {
-  cors: { origin: '*', methods: ['GET', 'POST'] }
+  cors: {
+    origin: allowedOrigins,
+    methods: ["GET", "POST"],
+    credentials: true
+  }
 });
  
 const PORT = process.env.PORT || 3000;
