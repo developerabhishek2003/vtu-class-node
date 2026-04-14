@@ -9,30 +9,20 @@ const cors = require('cors');
 
 const app = express();
 
-// ✅ Allowed domain (IMPORTANT)
-const allowedOrigins = [
-  "https://skills.vtudeveloper.in"
-];
-
-// ✅ Express CORS
-app.use(cors({
-  origin: allowedOrigins,
-  credentials: true
-}));
-
+// ✅ SIMPLE CORS (no errors)
+app.use(cors());
 app.use(express.json());
 
 const server = http.createServer(app);
 
-// ✅ Socket.io CORS
+// ✅ SIMPLE SOCKET.IO
 const io = new Server(server, {
   cors: {
-    origin: allowedOrigins,
-    methods: ["GET", "POST"],
-    credentials: true
+    origin: "*"
   }
 });
- 
+
+const PORT = process.env.PORT || 3000;
 const PORT = process.env.PORT || 3000;
  
 // Room state
